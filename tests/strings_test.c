@@ -38,11 +38,38 @@ void Test_string_tolower() {
         {"ABCD", "abcd"},
         {"xyZ Abc$", "xyz abc$"},
         {"", ""},
+        {"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"},
     };
     for (int i=0; i<sizeof(tests)/sizeof(test); i++) {
         test t = tests[i];
         string got = string_tolower(cstring(t.str));
-        assert(string_equal(got, cstring(t.want)));
+        if (!string_equal(got, cstring(t.want))) {
+            printf("toupper = %s, want = %s\n", got, t.want);
+            assert(false);
+        }
+    }
+
+}
+
+void Test_string_toupper() {
+    typedef struct {
+        char *str;
+        char *want;
+    } test;
+
+    test tests[] = {
+        // {"abcd", "ABCD"},
+        // {"xyZ Abc$", "XYZ ABC$"},
+        // {"", ""},
+        {"abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
+    };
+    for (int i=0; i<sizeof(tests)/sizeof(test); i++) {
+        test t = tests[i];
+        string got = string_toupper(cstring(t.str));
+        if (!string_equal(got, cstring(t.want))) {
+            printf("toupper = %s, want = %s\n", got, t.want);
+            assert(false);
+        }
     }
 
 }
@@ -52,6 +79,7 @@ int main()
     Test_string_len();
     Test_string_equal();
     Test_string_tolower();
+    Test_string_toupper();
 
     passed();
 

@@ -47,10 +47,26 @@ string string_tolower(string s) {
 	char *p = s;
 	int i = 0;
 	while (*p) {
-		if (isupper(*p))
-			str[i] = *p + 'a' - 'A';
+		char c = *p;
+		if ('A' <= c && c <= 'Z')
+			str[i] = c + 'a' - 'A';
 		else
-			str[i] = *p;
+			str[i] = c;
+		p++; i++;
+	}
+	return str;
+}
+
+string string_toupper(string s) {
+	string str = stringl("", string_len(s));
+	char *p = s;
+	int i = 0;
+	while (*p) {
+		char c =  *p;
+		if ('a' <= c && c <= 'z')
+			str[i] = c - ('a' - 'A');
+		else
+			str[i] = c;
 		p++; i++;
 	}
 	return str;

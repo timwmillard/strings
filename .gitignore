@@ -1,0 +1,9 @@
+
+.DS_Store
+
+/.vscode
+*.o
+
+/tests/*_test
+!/tests/*_test.c
+!/tests/*_test.h
